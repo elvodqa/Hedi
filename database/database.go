@@ -3,12 +3,14 @@ package database
 import (
 	"database/sql"
 	"fmt"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var database *sql.DB
 
 func Initialize() {
-	db, connErr := sql.Open("mysql", "root:local@tcp(127.0.0.1:3306)/hedi")
+	db, connErr := sql.Open("sqlite3", "./database/database.db")
 
 	db.SetMaxOpenConns(8)
 	db.SetMaxIdleConns(8)
